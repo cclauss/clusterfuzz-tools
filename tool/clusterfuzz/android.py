@@ -75,7 +75,7 @@ def ensure_asan(android_libclang_dir_path, device_id):
       'Are you sure you want to install ASAN on the device %s?' % device_id)
 
   _, output = common.execute(
-      common.get_resource(0755, 'resources', 'asan_device_setup.sh'),
+      common.get_resource(0o755, 'resources', 'asan_device_setup.sh'),
       '--lib %s --device %s' % (android_libclang_dir_path, device_id),
       env={'ADB_PATH': common.check_binary('adb', cwd='.')},
       redirect_stderr_to_stdout=True,

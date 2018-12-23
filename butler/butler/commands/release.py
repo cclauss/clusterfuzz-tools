@@ -1,4 +1,5 @@
 """Make a release."""
+from __future__ import print_function
 # Copyright 2016 Google Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,8 +24,8 @@ BASH_RESET_MARKER = '\033[0m'
 
 def run(cmd):
   """Run the command."""
-  print
-  print '%s%s%s' %(BASH_BLUE_MARKER, cmd, BASH_RESET_MARKER)
+  print()
+  print('%s%s%s' %(BASH_BLUE_MARKER, cmd, BASH_RESET_MARKER))
 
   subprocess.check_call(cmd, shell=True, env=os.environ.copy())
 

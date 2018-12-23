@@ -1,5 +1,10 @@
 """Transform the output before printing on screen."""
 
+try:
+  xrange
+except NameError:
+  xrange = range
+
 
 class Base(object):
   """Transform output and send to the output function."""

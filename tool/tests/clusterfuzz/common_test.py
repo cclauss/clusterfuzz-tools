@@ -681,18 +681,18 @@ class MemoizeTest(helpers.ExtendedTestCase):
   def test_memoize_module(self):
     """Test memoizing a module function."""
     result = dummy_memoize()
-    for _ in xrange(10):
+    for _ in range(10):
       self.assertEqual(result, dummy_memoize())
 
   def test_different_args(self):
     """Test memoizing different arguments."""
     dummy = DummyMemoize('a', 'b')
 
-    for _ in xrange(10):
+    for _ in range(10):
       self.assertEqual('ba', dummy.b('a'))
     self.assertEqual(1, dummy.b_execution_count)
 
-    for _ in xrange(10):
+    for _ in range(10):
       self.assertEqual('baaa', dummy.b('aaa'))
     self.assertEqual(2, dummy.b_execution_count)
 
@@ -701,7 +701,7 @@ class MemoizeTest(helpers.ExtendedTestCase):
     dummy_0 = DummyMemoize('a', 'b')
     dummy_1 = DummyMemoize('c', 'd')
 
-    for _ in xrange(0, 5):
+    for _ in range(5):
       self.assertEqual('a', dummy_0.a())
       self.assertEqual('bx', dummy_0.b('x'))
       self.assertEqual('c', dummy_1.a())

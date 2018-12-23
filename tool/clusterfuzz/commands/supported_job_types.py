@@ -28,7 +28,7 @@ def execute():
   logger.debug('Printing supported job types')
 
   with open(common.get_resource(
-      0640, 'resources', 'supported_job_types.yml')) as stream:
+      0o640, 'resources', 'supported_job_types.yml')) as stream:
     supported_jobs = yaml.load(stream)
   to_print = {}
   for category in supported_jobs:

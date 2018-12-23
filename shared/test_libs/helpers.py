@@ -50,7 +50,7 @@ class ExtendedTestCase(fake_filesystem_unittest.TestCase):
   def assert_file_permissions(self, filename, permissions):
     """Assert that 'filename' has specific permissions"""
 
-    self.assertEqual(int(oct(os.stat(filename).st_mode & 0777)[-3:]),
+    self.assertEqual(int(oct(os.stat(filename).st_mode & 0o777)[-3:]),
                      permissions)
 
   def assert_n_calls(self, n, methods):

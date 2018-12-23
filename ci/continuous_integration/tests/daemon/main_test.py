@@ -220,7 +220,7 @@ class LoadNewTestcasesTest(helpers.ExtendedTestCase):
             json={'page': page, 'reproducible': 'yes',
                   'q': 'platform:linux', 'open': 'yes',
                   'project': 'chromium'})
-        for page in xrange(1, 17)
+        for page in range(1, 17)
     ])
 
 

@@ -145,7 +145,7 @@ class GetBinaryPathTest(helpers.ExtendedTestCase):
 
   def test_call(self):
     """Tests calling the method."""
-    self.mock.stat.return_value = mock.Mock(st_mode=0600)
+    self.mock.stat.return_value = mock.Mock(st_mode=0o600)
 
     build_dir = os.path.expanduser(os.path.join(
         '~', 'chrome_src', 'out', '12345_build'))
@@ -159,7 +159,7 @@ class GetBinaryPathTest(helpers.ExtendedTestCase):
     path = os.path.join(build_dir, 'd8')
     self.assertEqual(path, provider.get_binary_path())
     self.mock.stat.assert_called_once_with(path)
-    self.mock.chmod.assert_called_once_with(path, 0700)
+    self.mock.chmod.assert_called_once_with(path, 0o700)
 
 
 class DownloadedBinaryTest(helpers.ExtendedTestCase):

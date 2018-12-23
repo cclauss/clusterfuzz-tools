@@ -45,7 +45,7 @@ def send_log(params, stacktrace=None):
   """Joins the params dict with info like user id and then sends logs."""
   scopes = ['https://www.googleapis.com/auth/logging.write']
   filename = common.get_resource(
-      0640, 'resources', 'clusterfuzz-tools-logging.json')
+      0o640, 'resources', 'clusterfuzz-tools-logging.json')
 
   credentials = ServiceAccountCredentials.from_json_keyfile_name(
       filename, scopes=scopes)

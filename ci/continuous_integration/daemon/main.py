@@ -1,4 +1,5 @@
 """The main module for the CI server."""
+from __future__ import print_function
 
 import collections
 import os
@@ -108,7 +109,7 @@ def update_auth_header():
 
   with open(AUTH_FILE_LOCATION, 'w') as f:
     f.write('Bearer %s' % new_auth_token.access_token)
-  os.chmod(AUTH_FILE_LOCATION, 0600)
+  os.chmod(AUTH_FILE_LOCATION, 0o600)
 
 
 def get_binary_version():
@@ -167,12 +168,12 @@ def load_new_testcases():
 
     for testcase in items:
       if testcase['jobType'] not in supported_jobtypes['chromium']:
-        print 'Skip %s (%s) because its job type is not supported.' % (
-            testcase['id'], testcase['jobType'])
+        print('Skip %s (%s) because its job type is not supported.' % (
+            testcase['id'], testcase['jobType']))
         continue
 
       if not is_time_valid(int(testcase['timestamp'])):
-        print "Skip %s because it's too old." % testcase['id']
+        print("Skip %s because it's too old." % testcase['id'])
         continue
 
       if (testcase['id'] in PROCESSED_TESTCASE_IDS or
@@ -311,7 +312,7 @@ def main():
     testcases = load_new_testcases()
 
     if not testcases:
-      print 'There is no more valid testcase. Exit.'
+      print('There is no more valid testcase. Exit.')
       break
 
     for testcase in testcases:

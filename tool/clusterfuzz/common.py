@@ -36,6 +36,11 @@ from clusterfuzz import local_logging
 from clusterfuzz import output_transformer
 from error import error
 
+try:
+  raw_input
+except NameError:
+  raw_input = input
+
 RETRY_COUNT = 5
 RETRY_SLEEP_TIME = 3
 
@@ -197,7 +202,7 @@ def style(s, marker, reset_char):
 
 def get_version():
   """Print version."""
-  with open(get_resource(0640, 'resources', 'VERSION')) as f:
+  with open(get_resource(0o640, 'resources', 'VERSION')) as f:
     return f.read().strip()
 
 
@@ -232,13 +237,13 @@ def get_stored_auth_header():
   if not os.path.isfile(AUTH_HEADER_FILE):
     return None
 
-  can_group_access = bool(os.stat(AUTH_HEADER_FILE).st_mode & 0070)
-  can_other_access = bool(os.stat(AUTH_HEADER_FILE).st_mode & 0007)
+  can_group_access = bool(os.stat(AUTH_HEADER_FILE).st_mode & 0o070)
+  can_other_access = bool(os.stat(AUTH_HEADER_FILE).st_mode & 0o007)
 
   if can_group_access or can_other_access:
     raise error.PermissionsTooPermissiveError(
         AUTH_HEADER_FILE,
-        oct(os.stat(AUTH_HEADER_FILE).st_mode & 0777))
+        oct(os.stat(AUTH_HEADER_FILE).st_mode & 0o777))
 
   with open(AUTH_HEADER_FILE, 'r') as f:
     return f.read()

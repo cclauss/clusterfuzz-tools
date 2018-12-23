@@ -1,4 +1,5 @@
 """Run pylint of all changed."""
+from __future__ import print_function
 
 import sys
 import os
@@ -9,7 +10,7 @@ from pylint import lint
 def run_lint(path, pylintrc_path):
   """Run pylint and return exit code."""
   try:
-    print 'Linting: %s' % path
+    print('Linting: %s' % path)
     lint.Run(['--rcfile=%s' % pylintrc_path, path])
     return 0
   except SystemExit as e:
@@ -20,7 +21,7 @@ def main():
   """Get diff files and run pylint against them."""
   basedir = os.path.dirname(__file__)
   pylintrc_path = os.path.join(basedir, '.pylintrc')
-  print 'Pylintrc: %s' % pylintrc_path
+  print('Pylintrc: %s' % pylintrc_path)
 
   rootdir = os.path.join(basedir, '..')
 

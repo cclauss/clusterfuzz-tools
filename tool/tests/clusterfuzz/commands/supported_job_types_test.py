@@ -19,6 +19,11 @@ import yaml
 from clusterfuzz.commands import supported_job_types
 from test_libs import helpers
 
+try:
+    reload
+except NameError:
+    from importlib import reload
+
 
 class ExecuteTest(helpers.ExtendedTestCase):
   """Tests the printing of supported job types."""

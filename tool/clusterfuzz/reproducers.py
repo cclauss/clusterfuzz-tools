@@ -214,7 +214,7 @@ def symbolize(output, source_dir_path):
   asan_symbolizer_location = os.path.join(
       source_dir_path,
       os.path.join('tools', 'valgrind', 'asan', 'asan_symbolize.py'))
-  symbolizer_proxy_location = common.get_resource(0755,
+  symbolizer_proxy_location = common.get_resource(0o755,
                                                   'asan_symbolize_proxy.py')
 
   _, symbolized_out = common.execute(
@@ -293,7 +293,7 @@ class BaseReproducer(object):
     self.binary_path = binary_provider.get_binary_path()
     self.build_directory = binary_provider.get_build_dir_path()
     self.source_directory = binary_provider.get_source_dir_path()
-    self.symbolizer_path = common.get_resource(0755, 'resources',
+    self.symbolizer_path = common.get_resource(0o755, 'resources',
                                                'llvm-symbolizer')
     self.gestures = testcase.gestures
     self.timeout = TEST_TIMEOUT
@@ -323,7 +323,7 @@ class BaseReproducer(object):
             'UBSAN_OPTIONS': 'ubsan',
         }
         filename = common.get_resource(
-            0640, 'resources', 'suppressions',
+            0o640, 'resources', 'suppressions',
             '%s_suppressions.txt' % suppressions_map[variable])
         options['suppressions'] = filename
       env[variable] = serialize_sanitizer_options(options)
@@ -511,7 +511,7 @@ class Xvfb(object):
           ['blackbox'], env={
               'DISPLAY': display_name
           })
-    except OSError, e:
+    except OSError as e:
       if str(e) == '[Errno 2] No such file or directory':
         raise error.NotInstalledError('blackbox')
       raise
